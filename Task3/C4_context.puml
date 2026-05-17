@@ -1,0 +1,19 @@
+@startuml
+
+title Диаграмма контекста бизнес-функций "Умного дома"
+
+left to right direction
+
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Component.puml
+
+Person(owner, "Собственник", "Клиент компании")
+
+System(prop_development, "PropDevelopment", "Система, предоставляющая собственникам связанные с обслуживанием жилых комплексов услуги")
+System_Ext(partner_service, "Партнерская система", "Система, предоставляющая сервисы 'Умного дома' и включающая в себя умные устройства")
+
+Rel(owner,prop_development,"Отправляет команды для управления умными устройствами через мобильное приложение или вызывает API через звонок по телефону")
+Rel(owner,partner_service, "Предъявляет используемую для аутентификации информацию и управления устройством в случае успеха")
+Rel(partner_service,prop_development, "Передает предъявленную собственником информацию для аутентификации")
+Rel(prop_development,partner_service, "Отправляет команду на управление умным устройством или отклоняет запрос на управление при неудачной аутентификации")
+
+@enduml
